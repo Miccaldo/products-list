@@ -1,23 +1,22 @@
-import { IProduct } from "@/app/types"
+import { IProduct } from '@/app/types';
 
 export interface ISearchbar {
-    className?: string
+	className?: string;
 }
 
 export interface ISearchFilter {
-    productName: string
+	productName: string;
 }
 
 export interface ISearchList {
-    items: IProduct[],
-    opened: boolean,
-    closeSearchList: () => void,
-    isLoading: boolean,
-    hasShowMore: boolean
+	items: IProduct[];
+	opened: boolean;
+	closeSearchList: () => void;
+	isLoading: boolean;
+	hasShowMore: boolean;
 }
 
 export interface IUseSearchbar {
-    products: IProduct[],
-    phrase: string
+	products: IProduct[];
+	phrase: string;
 }
-

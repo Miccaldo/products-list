@@ -1,30 +1,28 @@
-import { useSearchParams } from "next/navigation"
-import { useQueryParams } from "./useQueryParams"
+import { useSearchParams } from 'next/navigation';
 
 interface IUsePagination {
-    totalItems: number
+	totalItems: number;
 }
 
-export const usePagination = ({totalItems}:IUsePagination) => {
+export const usePagination = ({ totalItems }: IUsePagination) => {
+	const searchParams = useSearchParams();
 
-    const searchParams = useSearchParams();
+	let page: string | number | null = searchParams.get('page');
+	page = page ? parseInt(page) : 1;
 
-    let page: string | number | null = searchParams.get('page');
-    page = page ? parseInt(page) : 1;
+	let limit: string | number | null = searchParams.get('limit');
+	limit = limit ? parseInt(limit) : totalItems;
 
-    let limit:string | number | null = searchParams.get('limit');
-    limit = limit ? parseInt(limit) : totalItems;
+	const totalPages = Math.ceil(totalItems / limit);
 
-    const totalPages = Math.ceil(totalItems / limit);
+	const isNextPage = page < totalPages;
+	const isPreviousPage = page > 1;
 
-    const isNextPage = page < totalPages;
-    const isPreviousPage = page > 1;
-
-    return {
-        page,
-        limit,
-        totalPages,
-        isNextPage,
-        isPreviousPage
-    }
-}
+	return {
+		page,
+		limit,
+		totalPages,
+		isNextPage,
+		isPreviousPage,
+	};
+};

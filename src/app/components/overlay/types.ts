@@ -1,3 +1,3 @@
 export interface IOverlay {
-    onClick?: () => void
+	onClick?: () => void;
 }

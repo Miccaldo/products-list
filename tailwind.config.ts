@@ -9,10 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       zIndex: {
-        1: '1'
+        1: "1",
       },
       minHeight: {
-        'vh-minus-100': 'calc(100vh - 100px)',
+        "vh-minus-100": "calc(100vh - 100px)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

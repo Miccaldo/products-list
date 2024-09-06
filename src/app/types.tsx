@@ -1,17 +1,17 @@
 export interface QueryParams {
-    [key: string]: string | undefined;
+	[key: string]: string | undefined;
 }
 
 export interface ISearchParams {
-    searchParams?:QueryParams
+	searchParams?: QueryParams;
 }
 
 export interface IProduct {
-    id: number,
-    name: string,
-    description: string,
-    image: string,
-    promotion?: boolean,
-    rating: number,
-    active?: boolean
+	id: number;
+	name: string;
+	description: string;
+	image: string;
+	promotion?: boolean;
+	rating: number;
+	active?: boolean;
 }

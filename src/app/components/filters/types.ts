@@ -1,8 +1,8 @@
 export type FormValues = {
-    active: boolean,
-    promotion: boolean
-}
+	active: boolean;
+	promotion: boolean;
+};
 
-export interface IFilterField extends React.InputHTMLAttributes<HTMLInputElement>  {
-    label: string
+export interface IFilterField extends React.InputHTMLAttributes<HTMLInputElement> {
+	label: string;
 }

@@ -1,9 +1,9 @@
-import { IProduct } from "@/app/types"
+import { IProduct } from '@/app/types';
 
 export interface IProductsGrid {
-    items: IProduct[]
+	items: IProduct[];
 }
 
 export interface IProductReviews {
-    rating: number
+	rating: number;
 }
