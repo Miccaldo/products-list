@@ -1,14 +1,17 @@
-import { useQueryParams } from "../hooks/useQueryParams"
+import { useQueryParams } from "./useQueryParams"
 import { useSearchParams } from "next/navigation"
 import { useRouter } from 'next/navigation'
-import type { FormValues } from "../filters/filters.types"
+import type { FormValues } from "../components/filters/filters.types"
 import { QueryParams } from "@/app/types"
 
 export const useFilters = () => {
     const params = Object.fromEntries(new Map(useSearchParams()));
     const router = useRouter()
     const { createQueryUrl } = useQueryParams(process.env.NEXT_PUBLIC_BASE_URL);
-    const initialValues: FormValues = { active: false, promotion: false };
+
+    let active = params.active ? JSON.parse(params.active) : false;
+    let promotion = params.promotion ? JSON.parse(params.promotion) : false;
+    const initialValues: FormValues = { active, promotion };
 
     const convertToQueryParams = (values: FormValues, params: QueryParams): QueryParams => {
         const queryParams = Object.fromEntries(

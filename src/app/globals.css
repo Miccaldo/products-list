@@ -17,7 +17,9 @@
 }
 
 body {
+  @apply bg-gray-100 text-slate-700 min-h-screen;
 }
+
 
 @layer utilities {
   .text-balance {

@@ -1,29 +1,23 @@
 'use client'
 import { ReactNode } from "react";
-import { usePagination } from "../hooks/usePagination"
-import { useQueryParams } from "../hooks/useQueryParams";
+import { usePagination } from "../../hooks/usePagination"
+import { useQueryParams } from "../../hooks/useQueryParams";
 import Link from "next/link";
 import { PageLink } from "./page-link/page-link";
-import { usePathname } from "next/navigation";
+import type { IPagination, IMapRange } from "./pagintion.types";
+import { useSearchParams } from "next/navigation";
 
-interface IPagination {
-    totalItems: number
-}
-
-interface IMapRange {
-    n: number,
-    m: number
-}
 
 export const Pagination: React.FC<IPagination> = ({totalItems}) => {
 
     const { page, limit, totalPages } = usePagination({totalItems});
     let { createQueryUrl } = useQueryParams(process.env.NEXT_PUBLIC_BASE_URL);
+    const params = Object.fromEntries(new Map(useSearchParams()));
 
     const buildPages = ({n,m}:IMapRange) => {
         const result = [];
         for (let i = n; i <= m; i++) {
-            let url = createQueryUrl({searchParams: { page: i.toString(), limit: limit.toString()}})
+            let url = createQueryUrl({searchParams: { ...params,  page: i.toString(), limit: limit.toString()}})
             result.push(<PageLink key={i} href={url} active={i === page}>{i}</PageLink>);
         }
         return result;
@@ -49,20 +43,20 @@ export const Pagination: React.FC<IPagination> = ({totalItems}) => {
 
             return (
                 <>
-                    <Link href={createQueryUrl({searchParams: { page: '1', limit: limit.toString()}})}>FIRST</Link>
+                    <Link className={`${page === 1 ? 'pointer-events-none text-slate-300' : ''}`} href={createQueryUrl({searchParams: { page: '1', limit: limit.toString()}})}>First</Link>
                     {firstPages}
                     {(page-2 > 3) && <span>...</span>}
                     {centralPages}
                     {(page +2 < totalPages - 2) && <span>...</span>}
                     {lastPages}
-                    <Link href={createQueryUrl({searchParams: { page: totalPages.toString(), limit: limit.toString()}})}>LAST</Link>
+                    <Link className={`${page === totalPages ? 'pointer-events-none text-slate-300' : ''}`} href={createQueryUrl({searchParams: { page: totalPages.toString(), limit: limit.toString()}})}>Last</Link>
                 </>
             )
         }
     }
     
     return (
-        <div>
+        <div className="my-6">
             <PaginationComponent />
         </div>
     )

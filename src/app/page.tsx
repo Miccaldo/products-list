@@ -1,8 +1,7 @@
-import type { IProduct } from "./types";
-import { useQueryParams } from "./components/hooks/useQueryParams";
+import { useQueryParams } from "./hooks/useQueryParams";
 import { ISearchParams } from "./types";
 import { Pagination } from "./components/pagination/pagination";
-
+import { ProductsGrid } from "./components/products-grid/products-grid";
 
 export default async function Products({
   searchParams,
@@ -26,13 +25,9 @@ export default async function Products({
   }
 
   return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        {products && products.map((product: IProduct) => {
-            return (
-              <div key={product.id}>{product.id}</div>
-            )
-          })}
-          <Pagination totalItems={totalItems}/>
+      <main className="container mx-auto px-4 flex min-h-vh-minus-100 flex-col items-center justify-between pt-10">
+        <ProductsGrid items={products}/>
+        <Pagination totalItems={totalItems}/>
       </main>
   );
 }

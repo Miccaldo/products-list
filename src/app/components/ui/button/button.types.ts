@@ -1,5 +1,8 @@
+import { ReactNode } from "react";
+
 type ButtonType = "primary" | "secondary";
 
-export interface IButton extends React.PropsWithChildren {
-    type?: ButtonType
+interface NativeButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface IButton extends React.PropsWithChildren, NativeButtonProps {
+    color?: ButtonType
 }

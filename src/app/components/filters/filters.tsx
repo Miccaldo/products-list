@@ -1,6 +1,7 @@
 'use client'
 import { Formik, Form, Field } from "formik"
-import { useFilters } from "../hooks/useFilters"
+import { useFilters } from "../../hooks/useFilters"
+import { FilterField } from "./filter-field"
 
 
 export const Filters: React.FC = () => {
@@ -8,16 +9,16 @@ export const Filters: React.FC = () => {
     const { initialValues, handleSubmit } = useFilters();
 
     return (
-        <div>
+        <div className="pt-4 md:py-0 pl-4">
             <Formik 
                 initialValues={initialValues}
                 onSubmit={handleSubmit}>
                 {({handleChange, submitForm, values}) => (
                     <Form>
-                        <div role="group">
-                            <label htmlFor="active">Active</label>
-                            <Field 
+                        <div className="flex gap-x-6" role="group">
+                            <FilterField 
                                 id="active" 
+                                label="Active"
                                 type="checkbox" 
                                 name="active"
                                 value="active"
@@ -26,9 +27,9 @@ export const Filters: React.FC = () => {
                                     handleChange(e);
                                     submitForm();
                                 }} />
-                            <label htmlFor="promotion">promotion</label>
-                            <Field 
+                            <FilterField 
                                 id="promotion" 
+                                label="Promo"
                                 type="checkbox" 
                                 name="promotion" 
                                 value="promotion" 

@@ -18,7 +18,7 @@ export interface IProduct {
     name: string,
     description: string,
     image: string,
-    promotion: boolean,
+    promotion?: boolean,
     rating: number,
-    active: boolean
+    active?: boolean
 }
