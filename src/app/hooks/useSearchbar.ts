@@ -32,6 +32,7 @@ export const useSearchbar = () => {
     delete params['limit'];
 
     const { createQueryUrl} = useQueryParams('https://642ec14a8ca0fe3352d7fe14.mockapi.io/api/v1/products');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const searchUrl = useMemo(() => createQueryUrl({searchParams: { ...params, search: phrase}}), [phrase, params.promotion, params.active]);
     const { data, isLoading} = useSWR(phrase.length >= minSearchChars ? searchUrl : null, fetcher<IProduct[]>)
     const [opened, setOpened] = useState(false);
@@ -52,10 +53,19 @@ export const useSearchbar = () => {
         phrase.length >= minSearchChars ? setOpened(true) : setOpened(false);
     }, [phrase])
 
-    const onPhraseChange = useCallback(
+    const debouncedCallback = useMemo(() => 
         debounce((value: string) => {
             setPhrase(value);
-        }, 1000), [])
+        }, 1000),
+        []
+    );
+
+    const onPhraseChange = useCallback(
+        (value: string) => {
+            debouncedCallback(value);
+        },
+        [debouncedCallback]
+    );
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.currentTarget.value;
