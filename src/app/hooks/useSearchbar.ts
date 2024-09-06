@@ -26,7 +26,7 @@ export const useSearchbar = () => {
 	delete params['page'];
 	delete params['limit'];
 
-	const { createQueryUrl } = useQueryParams(process.env.NEXT_PUBLIC_API_BASE_URL as string + '/products');
+	const { createQueryUrl } = useQueryParams((process.env.NEXT_PUBLIC_API_BASE_URL as string) + '/products');
 
 	const searchUrl = useMemo(
 		() => createQueryUrl({ searchParams: { ...params, search: phrase } }),

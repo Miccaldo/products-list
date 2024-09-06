@@ -10,7 +10,7 @@ export default async function Products({ searchParams }: ISearchParams) {
 	delete noPaginationSearchParams.page;
 	delete noPaginationSearchParams.limit;
 
-	const dataOnlyForTotals = await fetch(createQueryUrl({ searchParams: noPaginationSearchParams }));  // This fetch is only for get value of total elements
+	const dataOnlyForTotals = await fetch(createQueryUrl({ searchParams: noPaginationSearchParams })); // This fetch is only for get value of total elements
 	const totalProducts = await dataOnlyForTotals.json();
 	let totalItems = totalProducts.length;
 

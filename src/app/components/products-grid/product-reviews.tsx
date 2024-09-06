@@ -8,7 +8,9 @@ export const ProductReviews: React.FC<IProductReviews> = ({ rating }) => {
 		const starsCount = Math.ceil(rating / 2);
 		const outlineStarsCount = maxStars - starsCount;
 
-		const stars = Array.from({ length: starsCount }).map((_, index) => <StarIcon key={index} width={16} height={16} />);
+		const stars = Array.from({ length: starsCount }).map((_, index) => (
+			<StarIcon key={index} width={16} height={16} />
+		));
 		const outlineStars = Array.from({ length: outlineStarsCount }).map((_, index) => (
 			<StarOutlineIcon key={index} width={16} height={16} />
 		));
