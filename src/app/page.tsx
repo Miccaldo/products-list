@@ -4,13 +4,13 @@ import { Pagination } from './components/pagination/pagination';
 import { ProductsGrid } from './components/products-grid/products-grid';
 
 export default async function Products({ searchParams }: ISearchParams) {
-	const { createQueryUrl } = useQueryParams(process.env.API_BASE_URL + '/products');
+	const { createQueryUrl } = useQueryParams(process.env.NEXT_PUBLIC_API_BASE_URL + '/products');
 
 	const noPaginationSearchParams = { ...searchParams };
 	delete noPaginationSearchParams.page;
 	delete noPaginationSearchParams.limit;
 
-	const dataOnlyForTotals = await fetch(createQueryUrl({ searchParams: noPaginationSearchParams }));
+	const dataOnlyForTotals = await fetch(createQueryUrl({ searchParams: noPaginationSearchParams }));  // This fetch is only for get value of total elements
 	const totalProducts = await dataOnlyForTotals.json();
 	let totalItems = totalProducts.length;
 

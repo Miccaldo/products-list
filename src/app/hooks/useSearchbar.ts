@@ -26,7 +26,7 @@ export const useSearchbar = () => {
 	delete params['page'];
 	delete params['limit'];
 
-	const { createQueryUrl } = useQueryParams('https://642ec14a8ca0fe3352d7fe14.mockapi.io/api/v1/products');
+	const { createQueryUrl } = useQueryParams(process.env.NEXT_PUBLIC_API_BASE_URL as string + '/products');
 
 	const searchUrl = useMemo(
 		() => createQueryUrl({ searchParams: { ...params, search: phrase } }),
