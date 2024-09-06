@@ -1,10 +1,3 @@
-import { ReactNode } from "react";
-
-type ChildrenProps = {
-    children: ReactNode
-}
-export type ReactFCWithChildren = React.FC<ChildrenProps>
-
 export interface QueryParams {
     [key: string]: string | undefined;
 }

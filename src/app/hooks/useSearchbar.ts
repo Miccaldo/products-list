@@ -1,13 +1,10 @@
 'use client'
 import { useCallback, useEffect, useMemo, useState, useRef } from "react";
-import type { IUseSearchbar, ISearchFilter } from "../components/searchbar/searchbar.types";
 import { IProduct } from "@/app/types";
 import { debounce } from "lodash";
 import useSWR from 'swr'
 import { useSearchParams } from 'next/navigation'
 import { useQueryParams } from "./useQueryParams";
-import { SWRConfig } from "swr";
-import { memoryCacheProvider } from "@/app/swr-provider";
 
 
 const fetcher = async <T>(
@@ -36,10 +33,7 @@ export const useSearchbar = () => {
 
     const { createQueryUrl} = useQueryParams('https://642ec14a8ca0fe3352d7fe14.mockapi.io/api/v1/products');
     const searchUrl = useMemo(() => createQueryUrl({searchParams: { ...params, search: phrase}}), [phrase, params.promotion, params.active]);
-    const { data, error, isLoading} = useSWR(phrase.length >= minSearchChars ? searchUrl : null, fetcher<IProduct[]>, {onSuccess: (data) => {
-        const map = memoryCacheProvider();
-            map.set(searchUrl as string, data);
-    },})
+    const { data, isLoading} = useSWR(phrase.length >= minSearchChars ? searchUrl : null, fetcher<IProduct[]>)
     const [opened, setOpened] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 

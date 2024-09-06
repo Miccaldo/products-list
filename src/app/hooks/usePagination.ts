@@ -13,7 +13,7 @@ export const usePagination = ({totalItems}:IUsePagination) => {
     page = page ? parseInt(page) : 1;
 
     let limit:string | number | null = searchParams.get('limit');
-    limit = limit ? parseInt(limit) : 10;
+    limit = limit ? parseInt(limit) : totalItems;
 
     const totalPages = Math.ceil(totalItems / limit);
 

@@ -1,5 +1,5 @@
 'use client'
-import { ISearchbar } from "./searchbar.types"
+import { ISearchbar } from "./types"
 import { IProduct } from "@/app/types"
 import { useState } from "react"
 import { useSearchbar } from "../../hooks/useSearchbar"

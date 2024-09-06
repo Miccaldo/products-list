@@ -16,6 +16,10 @@ export default async function Products({
   let totalProducts = await dataOnlyForTotals.json();
   let totalItems = totalProducts.length;
 
+  if(searchParams && searchParams.limit && !searchParams.page){
+    searchParams.page = '1';
+  }
+
   let data = await fetch(createQueryUrl({searchParams}));
   let products = await data.json();
 

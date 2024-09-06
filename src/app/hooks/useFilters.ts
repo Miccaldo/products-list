@@ -1,7 +1,7 @@
 import { useQueryParams } from "./useQueryParams"
 import { useSearchParams } from "next/navigation"
 import { useRouter } from 'next/navigation'
-import type { FormValues } from "../components/filters/filters.types"
+import type { FormValues } from "../components/filters/types"
 import { QueryParams } from "@/app/types"
 
 export const useFilters = () => {
@@ -31,7 +31,7 @@ export const useFilters = () => {
       ) => {
         const queryParams = convertToQueryParams(values, params);
       
-        const filterUrl = createQueryUrl({ searchParams: { ...params, ...queryParams } }) as URL;
+        const filterUrl = createQueryUrl({ searchParams: { ...params, ...queryParams, page: '1' } }) as URL;
         router.push(filterUrl.href);
       };
 

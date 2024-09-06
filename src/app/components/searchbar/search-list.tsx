@@ -1,4 +1,4 @@
-import type { ISearchList } from "./searchbar.types";
+import type { ISearchList } from "./types";
 import { SearchListItem } from "./search-list-item";
 import type { IProduct } from "@/app/types";
 import ReactLoading from 'react-loading';

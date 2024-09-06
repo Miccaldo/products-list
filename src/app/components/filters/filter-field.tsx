@@ -1,5 +1,5 @@
 import { Field } from "formik"
-import { IFilterField } from "./filters.types";
+import { IFilterField } from "./types";
 
 export const FilterField: React.FC<IFilterField> = ({id, label, ...props}) => {
 

@@ -1,4 +1,4 @@
-import { IButton } from "./button.types";
+import { IButton } from "./types";
 
 export const Button: React.FC<IButton> = ({color, children, className, disabled, ...props}) => {
 

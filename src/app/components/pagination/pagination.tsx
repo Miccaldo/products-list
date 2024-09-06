@@ -4,7 +4,7 @@ import { usePagination } from "../../hooks/usePagination"
 import { useQueryParams } from "../../hooks/useQueryParams";
 import Link from "next/link";
 import { PageLink } from "./page-link/page-link";
-import type { IPagination, IMapRange } from "./pagintion.types";
+import type { IPagination, IMapRange } from "./types";
 import { useSearchParams } from "next/navigation";
 
 
@@ -18,7 +18,7 @@ export const Pagination: React.FC<IPagination> = ({totalItems}) => {
         const result = [];
         for (let i = n; i <= m; i++) {
             let url = createQueryUrl({searchParams: { ...params,  page: i.toString(), limit: limit.toString()}})
-            result.push(<PageLink key={i} href={url} active={i === page}>{i}</PageLink>);
+            result.push(<PageLink key={i} href={url} active={i === page} page={i}>{i}</PageLink>);
         }
         return result;
     }
@@ -43,13 +43,13 @@ export const Pagination: React.FC<IPagination> = ({totalItems}) => {
 
             return (
                 <>
-                    <Link className={`${page === 1 ? 'pointer-events-none text-slate-300' : ''}`} href={createQueryUrl({searchParams: { page: '1', limit: limit.toString()}})}>First</Link>
+                    <Link title="First page" className={`${page === 1 ? 'pointer-events-none text-slate-300' : ''}`} href={createQueryUrl({searchParams: { page: '1', limit: limit.toString()}})}>First</Link>
                     {firstPages}
                     {(page-2 > 3) && <span>...</span>}
                     {centralPages}
                     {(page +2 < totalPages - 2) && <span>...</span>}
                     {lastPages}
-                    <Link className={`${page === totalPages ? 'pointer-events-none text-slate-300' : ''}`} href={createQueryUrl({searchParams: { page: totalPages.toString(), limit: limit.toString()}})}>Last</Link>
+                    <Link title="Last page" className={`${page === totalPages ? 'pointer-events-none text-slate-300' : ''}`} href={createQueryUrl({searchParams: { page: totalPages.toString(), limit: limit.toString()}})}>Last</Link>
                 </>
             )
         }

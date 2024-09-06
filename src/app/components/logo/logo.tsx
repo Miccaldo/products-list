@@ -1,4 +1,4 @@
-import { ILogo } from "./logo.types"
+import { ILogo } from "./types"
 
 export const Logo: React.FC<ILogo> = ({}) => {
     return (

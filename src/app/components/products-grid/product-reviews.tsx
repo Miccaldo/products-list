@@ -21,7 +21,10 @@ export const ProductReviews: React.FC<IProductReviews> = ({ rating }) => {
     }
 
     return (
-        <div className="flex gap-x-2 mb-4">
+        <div itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating" className="flex gap-x-2 mb-4">
+            <span itemProp="ratingValue" className="hidden">{rating}</span>
+            <meta itemProp="bestRating" content="5" />
+            <meta itemProp="reviewCount" content={(rating*10).toString()} />
             <Stars />
         </div>
     )
